@@ -20,3 +20,43 @@ header{
     flex: 0 0 19%;
     border-left: 1px solid #727272;
 }
+
+details {
+    border: 1px solid #ccc;
+}
+
+details:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+details summary::before {
+    font-family: FontAwesome;
+    content: '';
+    margin-right: 20px;
+}
+
+details summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+details summary::before {
+    font-family: FontAwesome;
+    content: '\0ab';
+    margin-right: 20px;
+}
+
+/**
+ * アコーディオンがオープン時はマイナスアイコンに変更
+**/
+details[open] summary::before {
+    content: '\02227';
+}
+
+details p {
+    margin: 0;
+    padding: 20px;
+}
