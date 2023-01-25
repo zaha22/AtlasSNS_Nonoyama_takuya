@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
     <!--スマホ,タブレット対応-->
@@ -20,57 +21,52 @@
     <!--OGPタグ/twitterカード-->
 </head>
 <body>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-        <div id="acordion">
-
-                <div id="">
-                    <details>
-                        <summary>{{ Auth::user()->username}}さん<img src="images/arrow.png"></summary>
-                        <p><ul>
-                            <li><a href="/top">ホーム</a></li>
-                            <li><a href="/profile">プロフィール</a></li>
-                            <li><a href="/logout">ログアウト</a></li>
-                        </ul></p>
-                    </details>
-
-
-
+        <a href="/top"><img src="{{ asset('images/atlas.png') }}"></a>
+        <details>
+            <summary>{{ Auth::user()->username}}さん</summary>
+            <div id="side-bar1">
+            <ul class="side-bar1">
+                <li><a href="/top">ホーム</a></li>
+                <li><a href="/profile">プロフィール編集</a></li>
+                <li><a href="/logout">ログアウト</a></li>
+            </ul>
+            </div>
+        </details>
         </div>
     </header>
+
     <div id="row">
         <div id="container">
             @yield('content')
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{ Auth::user()->username}}さんの</p>
-                <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>{{ Auth::user()->username}}さんの</p><br>
+                <div class="loginfollowsuu">
+                    <h21>フォロー数</h21>
+                    <h22>{{ Auth::user()->follows()->count() }}名</h22>
+                    <p><a href="/follow-list" class="btn btn-primary">フォローリスト</a></p>
                 </div>
-                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
-                <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <div class="loginfollower">
+                    <p>フォロワー数
+                    {{ Auth::user()->followUsers()->count() }}名</p>
+                    <p><a href="/follower-list" class="btn btn-primary">フォロワーリスト</a>
                 </div>
-                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                <div class="loginsearchbutton">
+                    <a href="/search" class="btn btn-primary">ユーザー検索</a>
+                </div>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
-
-            <input type="search" placeholder="ユーザー名を入力" name="search">
-            <div>
-            <button type="submit">検索</button>
-            </a>
-    </div>
-
-
         </div>
     </div>
+
+
+
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

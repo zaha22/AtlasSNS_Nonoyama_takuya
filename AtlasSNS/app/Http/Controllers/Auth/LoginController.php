@@ -49,6 +49,7 @@ class LoginController extends Controller
                 return redirect('/top');
             }
         }
+        //dd($data);
         return view("auth.login");
     }
 

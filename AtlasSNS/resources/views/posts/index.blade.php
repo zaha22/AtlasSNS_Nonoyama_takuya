@@ -2,55 +2,54 @@
 
 @section('content')
 
-<div class="container">
-        <h2 class="page-header">新しく投稿をする</h2>
-        {!! Form::open(['url' => 'post/create']) !!}
-        <div class="form-group">
-            {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容']) !!}
+<li class="indexpostmain">
+        <div class="indexpostcreate">
+            <img src="{{ asset('images/' . Auth::user()->images) }}">
+            {!! Form::open(['url' => 'post/create']) !!}
+            {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容を入力してください']) !!}
+            <input type="image" src="/images/post.png" id="iconbutton1"   width="100" height="100">
         </div>
-        <button type="submit" class="btn btn-success pull-right">追加</button>
-        {!! Form::close() !!}
+</li>
+{!! Form::close() !!}
 
 
-        <!--削除機能-->
-        <h3 class="delete-header">削除機能</h3>
-        {!! Form::open(['url' => 'post/{id}/delete']) !!}
-        <div class="form-group">
-            {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '削除id']) !!}
-        </div>
-        <button type="submit" class="btn btn-success pull-right">削除</button>
-        {!! Form::close() !!}
+@foreach ($post as $post)
+<div class="indexpostlist">
+    <ul>
+        <li class="post-block">
+            <figure><img src="{{ asset('images/' . $post->user->images) }}"></figure>
+            <div class="post-content">
+                    {{ $post->user->username}}
+                    <p>{{ $post->created_at }}</p>
 
 
-        <h4 class='page-header'>つぶやき内容の変更</h4>
-        {!! Form::open(['url' => 'post/update']) !!}
-        <div class="form-group">
-            {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '変更内容']) !!}
-        </div>
-        <button type="submit" class="btn btn-primary pull-right">更新</button>
-        {!! Form::close() !!}
+                    {{ $post->post }}
 
-        <h5>ログインユーザーのつぶやき表示</h5>
-        <tr>
-            <th>投稿ユーザー</th>
-            <p></p><th>つぶやき内容</th>
-        </tr>
-
-        <h2 class="page-header">投稿一覧</h2>
-        <tr>
-                <th>投稿No</th>
-                <th>投稿内容</th>
-                <th>投稿日時</th>
-            </tr>
-            @foreach ($post as $post)
-            <tr>
-                <td>{{ $post->id }}</td>
-                <td>{{ $post->post }}</td>
-                <td>{{ $post->created_at }}</td>
-            </tr>
-            @endforeach
-
-
+            </div>
+            <div class="indexdeletebutton">
+                <a href="post/{{$post->id}}/delete"><img src="/images/trash-h.png" width="60" height="60"></a>
+                <a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}"><img
+                src="/images/edit.png" width="60" height="60"></a>
+            </div>
+        </li>
+    </ul>
 </div>
+@endforeach
+
+
+            <!-- モーダルの中身 -->
+            <div class="modal js-modal">
+                <div class="modal__bg js-modal-close"></div>
+                <div class="modal__content">
+                    <form action="post/{id}/update" method="get">
+                        <textarea name="post" class="modal_post"></textarea>
+                        <input type="hidden" name="id" class="modal_id" value="">
+                        <input type="submit" value="更新">
+                        {{ csrf_field() }}
+                    </form>
+                    <a class="js-modal-close" href="">閉じる</a>
+                </div>
+            </div>
+
 
 @endsection

@@ -49,7 +49,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|string|min:2|max:12',
+            'username' => 'required|string|min:2|max:20',
             'mail' => 'required|string|email|min:5|max:40|unique:users',
             'password' => 'alpha_num|required|string|min:8|max:20|confirmed',
         ]);
@@ -70,22 +70,28 @@ class RegisterController extends Controller
         ]);
     }
 
-
-    // public function registerForm(){
-    //     return view("auth.register");
-    // }
-
+    //新規ユーザー登録機能
     public function register(Request $request){
         if($request->isMethod('post')){
             $data = $request->input();
-
+            //$thisでこのページ内にある
             $this->create($data);
+            //$username = $request->input('username');
+            //dd($user);
             return redirect('added');
         }
         return view('auth.register');
     }
-
+    //新規ユーザー表示機能
     public function added(){
-        return view('auth.added');
+        //$username = $this->create($data);
+        //\DB::table('users')
+        $users = \DB::table('users')
+        ->latest('id')
+        ->first();
+        //dd($users);
+
+        //$user = $request->input('username');
+        return view('auth.added',['users'=>$users]);
     }
 }

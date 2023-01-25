@@ -2,7 +2,44 @@
 html{
 }
 body{
+
 }
+
+
+/**モーダル機能**/
+/* 必要に応じて編集しご自身でSNS課題のレイアウトのようにカスタマイズしてください。 */
+.content {
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.modal {
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.modal__bg {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal__content {
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+}
+
+/**モーダル画面終了**/
+
 /* header */
 header{
     background:#186AC9;
@@ -21,8 +58,104 @@ header{
     border-left: 1px solid #727272;
 }
 
+
+/**ポスト画面**/
+.indexdeletebutton {
+    margin-top: 90px;
+    display: flex;
+}
+.post-content p {
+    padding-left: 720px;
+}
+
+.indexpostmain  {
+    border-bottom: gray solid 5px;
+}
+.indexpostcreate img {
+    margin-left: 60px;
+    margin-top: 50px;
+}
+.indexpostcreate form {
+    float: right;
+    margin-left: 5px;
+    margin-top: 50px;
+}
+.indexpostcreate input{
+    float: left;
+    margin-top: 60px;
+    margin-left: 50px;
+}
+
+input.form-control {
+    margin-top: 10px;
+    height: 50px;
+    width: 600px;
+    border: transparent;
+}
+
+li {
+    list-style: none;
+    border-bottom: 1px solid #000;
+    display: flex;
+}
+
+.post-content {
+    width: 100%;
+    padding: 15px;
+}
+
+
+.post-content>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+/**ポスト画面終了**/
+
+
+
+/**アコーディオンメニュー**/
 details {
-    border: 1px solid #ccc;
+    text-align: right;
+    float: right;
+    font-size:70px;
+    position: relative;
+}
+
+ul.side-bar1 {
+    background-color: white;
+    position: absolute;
+    top: 110px;
+    right: 0px;
+    font-size: 36px;
+    border-top: #186AC9 solid 1px;
+    border-left: #186AC9 solid 1px;
+    border-bottom: #186AC9 solid 1px;
+    padding-left: 0px;
+}
+.side-bar1 li a{
+    text-align: center;
+    text-decoration: none;
+    color: #727272;
+    font-weight:lighter;
+}
+.side-bar1 li:hover a{
+    cursor: pointer;
+    background-color:#186AC9;
+}
+/* li{
+    border-bottom: 1px solid #dcdcdc;
+    font-size: 30px;
+    text-align: center;
+} */
+summary {
+    /* display: list-item;以外を指定してデフォルトの三角形アイコンを消します */
+    display: block;
+    z-index: auto;
+}
+details[open]  {
+    /* z-index: auto; */
+    font-size: 15px;
 }
 
 details:not(:last-child) {
@@ -56,7 +189,161 @@ details[open] summary::before {
     content: '\02227';
 }
 
-details p {
-    margin: 0;
-    padding: 20px;
+
+/**login.blade開始**/
+.loginfollower {
+    justify-content: space-around;
+    border-bottom: #727272 solid 1px;
 }
+.loginfollowsuu a {
+    margin-left: 100px;
+
+}
+.loginfollower a {
+    margin-left: 100px;
+}
+.loginsearchbutton a{
+    margin-top: 30px;
+    margin-left: 80px;
+    width: 8em;
+}
+/**login.blade終了**/
+
+
+
+/**フォローリスト開始**/
+.followicon-list {
+    border-bottom: #727272 solid 5px;
+    display: flex;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    gap: 3px 60px;
+
+}
+.followicon-list {
+    padding-left: 50px;
+}
+.followicon-list p {
+    font-size: 40px;
+    padding-left: 20px;
+}
+.followicongazou img{
+    padding-top: 0%;
+    padding-bottom: 0%;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.follow-list {
+    margin-top: 15px;
+    justify-content: space-around;
+    border-bottom: 2px solid gray;
+}
+.follow-list-post img {
+    padding-left: 60px;
+}
+hfollow-list-postcreated_at {
+    padding-left: 650px;
+}
+hfollow-list-postusername {
+    padding-left: 20px;
+}
+.follow-list-post p {
+    padding-left: 150px;
+}
+
+/**フォローリスト終了**/
+
+
+/**フォロワーリスト開始**/
+.followericon-list {
+    border-bottom: #727272 solid 5px;
+    display: flex;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    gap: 3px 60px;
+
+}
+
+.followericon-list {
+    padding-left: 50px;
+}
+
+.followericon-list p {
+    font-size: 40px;
+    padding-left: 20px;
+}
+
+.followericongazou img {
+    padding-top: 0%;
+    padding-bottom: 0%;
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.follower-list {
+    margin-top: 15px;
+    justify-content: space-around;
+    border-bottom: 2px solid gray;
+}
+
+.follower-list-post img {
+    padding-left: 60px;
+}
+hfollower-list-postusername {
+    padding-left: 20px;
+}
+hfollower-list-postcreated_at {
+    padding-left: 650px;
+}
+.follower-list-post p {
+    padding-left: 150px;
+}
+
+/**フォロワーリスト終了**/
+
+/**ユーザー検索画面**/
+.searchbutton {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 50px;
+}
+.searchbutton input {
+    height: 50px;
+    width: 350px;
+    border: #000 solid 2px;
+}
+.dateresult {
+    background-color: #186AC9;
+}
+
+
+/* .searchicon-username img {
+    padding-left: 100px;
+}
+hsearchusername {
+    padding-left: 20px;
+} */
+
+/**ユーザー検索画面終了**/
+
+/**othersprofile開始**/
+.otherprofile {
+    border-bottom: 5px solid gray;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.otherimageicon {
+    display: flex;
+}
+.name{
+    display: flex;
+}
+/**othersprofile終了**/
+
+/* searchblade開始 */
+
+/* searchblade終了 */

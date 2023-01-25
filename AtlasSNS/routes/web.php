@@ -36,24 +36,49 @@ Route::group(['middleware' => 'auth'], function() {
   Route::get('/top','PostsController@index');
 });
 
-Route::get('/profile','UsersController@profile');
-
-Route::get('/search','UsersController@index');
-
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
-
+//ログアウト機能
 Route::get('/logout','Auth\LoginController@logout');
 
-Route::post('/users/{user}/follow', 'FollowController@follow');
-Route::post('/users/{user}/unfollow', 'FollowController@unfollow');
+//プロフィール画面の表示
+Route::get('/profile','UsersController@profile');
+//アイコン画像表示
+Route::get('/profile/update','UsersController@show');
+//プロフィール画像の更新機能
+//Route::get('/profile','UsersController@profileupdate');
+
+
+
+//他ユーザーのプロフィール
+Route::get('/otherprofile/{id}','FollowsController@followed_profile');
+
+//他ユーザーのフォロー機能の作成
+Route::get('/otherfollow/{id}','FollowsController@otherfollow');
+//他ユーザーのフォロー解除機能
+Route::get('/otherfollowdelete/{id}','FollowsController@otherfollowdelete');
+//フォローしているユーザーの投稿一覧表示
+//Route::get('/otherprofile/{id}','FollowsController@followposts');
+
+
+//検索したワードを表示
+Route::post('/search','UsersController@usersearch');
+
+//一覧表示
+Route::get('/search','UsersController@search');
+
+//フォローリストの表示
+Route::get('/follow-list','PostsController@followList');
+Route::get('/follower-list','PostsController@followerList');
+
+//フォロー機能
+Route::get('users/{id}/follow', 'FollowsController@follow');
+Route::get('users/{user}/unfollow', 'FollowSController@unfollow');
 
 
 //投稿用
 Route::post('post/create','PostsController@post');
 
 //投稿の削除
-Route::post('post/{id}/delete','PostsController@delete');
+Route::get('post/{id}/delete','PostsController@delete');
 
 //投稿の編集
-Route::post('post/update','PostsController@update');
+Route::get('post/{id}/update','PostsController@update');
